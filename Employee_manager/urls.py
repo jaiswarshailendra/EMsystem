@@ -35,7 +35,5 @@ urlpatterns = [
     path("sup",views.Employee_Salary_CP),
     path("sup/<int:id>",views.Employee_Salary_CP),
     path("sdelete/<int:id>",views.sdelete)
-
-    #path('department_salary_costs/', views.department_salary_costs, name='department_salary_costs'),
 ]
 
