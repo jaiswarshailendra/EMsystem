@@ -1,0 +1,39 @@
+<!-- department_hierarchy.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ department.name }} Employee Hierarchy</h2>
+
+  <div class="employee-section">
+    <h3 class="collapse-trigger" data-toggle="collapse" data-target="#managerSection">Manager</h3>
+    <div id="managerSection" class="collapse">
+      <p>{{ hierarchy.manager.name }} - {{ hierarchy.manager.email }}</p>
+
+      <div class="team-leads-section">
+        <h4 class="collapse-trigger" data-toggle="collapse" data-target="#teamLeadsSection">Team Leads</h4>
+        <div id="teamLeadsSection" class="collapse">
+          {% for team_lead in hierarchy.team_leads %}
+            <p>{{ team_lead.employee.name }} - {{ team_lead.employee.email }}</p>
+            <ul>
+              {% for associate in team_lead.associates %}
+                <li>{{ associate.name }} - {{ associate.email }}</li>
+              {% endfor %}
+            </ul>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Add collapse functionality
+      $('.collapse-trigger').click(function () {
+        var target = $(this).data('target');
+        $(target).collapse('toggle');
+      });
+    });
+  </script>
+{% endblock %}

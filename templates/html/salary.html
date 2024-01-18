@@ -1,0 +1,32 @@
+{%extends 'html/home.html'%}
+{%block body%}
+<form method="post">
+{%csrf_token%}
+Start Date - <input type="date" name="sd"> to End Date - <input type="date" name="ed">
+<input type="submit">
+</form>
+<table class="table table-secondary table-striped">
+    <thead >
+      <tr>
+        <th>Employee</th>
+        <th>Salary</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th><a class=" btn btn-primary " href="/sup" role="button ">Add New</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in emps %}
+        <tr>
+          <td>{{ i.employee }}</td>
+          <td>{{ i.salary }}</td>
+          <td>{{ i.start_date }}</td>
+          <td>{{ i.end_date }}</td>
+          <td > <a class="btn btn-sm btn-info " href="/sup/{{i.id}}" role="button">Update</a> 
+            <a class="btn btn-sm btn-danger" href="/sdelete/{{i.id}}" role="button">Delete</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+{%endblock%}

@@ -1,0 +1,29 @@
+{%extends "html/home.html"%}
+{%block body%}
+
+<form method="post">
+    {%csrf_token%}
+    <label for="id_salary">Employee:</label>
+    <select name="employee" required="" id="id_employee">
+        <option value selected>-------</option>
+        {%for i in emp%}      
+        <option value={{i.id}}>{{i.name}}</option>
+        {%endfor%}
+      
+      </select>
+
+    <p>
+        <label for="id_salary">Salary:</label>
+        <input type="number" name="salary" step="0.01" required="" id="id_salary">
+    </p>
+    <p>
+        <label for="id_start_date">Start date:</label>
+        <input type="date" name="start_date" required="" id="id_start_date">
+    </p>
+    <p>
+        <label for="id_end_date">End date:</label>
+        <input type="date" name="end_date" required="" id="id_end_date">
+    </p>
+<button type="submit">Submit</button>
+</form>
+{%endblock%}
